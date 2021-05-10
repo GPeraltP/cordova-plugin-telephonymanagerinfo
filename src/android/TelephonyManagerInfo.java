@@ -12,6 +12,7 @@ import org.json.JSONObject;
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.support.v4.app.ActivityCompat;
+import android.os.Build;
 
 import android.provider.Settings;
 
@@ -182,7 +183,12 @@ public class TelephonyManagerInfo extends CordovaPlugin {
 
     public String getNetworkType(){
         TelephonyManager tm = (TelephonyManager) this.cordova.getActivity().getSystemService(Context.TELEPHONY_SERVICE);
-        int networkType = tm.getNetworkType();
+        int networkType = 0;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            networkType = tm.getDataNetworkType();
+        }else{
+            networkType = tm.getNetworkType();
+        }
         String returnValue = new String();
         switch (networkType) {
             case (TelephonyManager.NETWORK_TYPE_1xRTT):
