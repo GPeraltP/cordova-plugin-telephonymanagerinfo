@@ -14,6 +14,13 @@ import android.content.pm.PackageManager;
 import android.support.v4.app.ActivityCompat;
 import android.os.Build;
 
+import android.telephony.CellInfo;
+import android.telephony.CellInfoGsm;
+import android.telephony.CellInfoLte;
+import android.telephony.CellInfoWcdma;
+import android.telephony.gsm.GsmCellLocation;
+import java.util.List;
+
 import android.provider.Settings;
 
 import android.util.Log;
@@ -55,6 +62,7 @@ public class TelephonyManagerInfo extends CordovaPlugin {
             r.put("voiceMailNumber", this.getVoiceMailNumber());
             r.put("hasIccCard", this.hasIccCard());
             r.put("dataActivity", this.getDataActivity());
+            r.put("signalQuality", this.getSignalQuality());
             
             callbackContext.success(r.toString());
             return true;
@@ -319,6 +327,68 @@ public class TelephonyManagerInfo extends CordovaPlugin {
                 break;
         }
         return returnValue;
+    }
+
+    public String getSignalQuality() {
+        JSONObject jsonQuality = new JSONObject();
+        TelephonyManager tm = (TelephonyManager) this.cordova.getActivity().getSystemService(Context.TELEPHONY_SERVICE);
+        List<CellInfo> cellInfoList = tm.getAllCellInfo();
+        int calidaSignal;
+        for (CellInfo cellInfo : cellInfoList) {
+            if (cellInfo instanceof CellInfoLte) {
+                jsonQuality.put("Dbm",String.valueOf(((CellInfoLte)cellInfo).getCellSignalStrength().getDbm());
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    jsonQuality.put("Rsrp",String.valueOf(((CellInfoLte)cellInfo).getCellSignalStrength().getRsrp()));
+                    jsonQuality.put("Rsrq",String.valueOf(((CellInfoLte)cellInfo).getCellSignalStrength().getRsrq()));
+                    jsonQuality.put("Cqi",String.valueOf(((CellInfoLte)cellInfo).getCellSignalStrength().getCqi()));
+                    jsonQuality.put("Rssnr",String.valueOf(((CellInfoLte)cellInfo).getCellSignalStrength().getRssnr()));
+                }else{
+                    jsonQuality.put("Rsrp","");
+                    jsonQuality.put("Rsrq","");
+                    jsonQuality.put("Cqi","");
+                    jsonQuality.put("Rssnr","");
+                }
+                calidaSignal = ((CellInfoLte) cellInfo).getCellSignalStrength().getLevel();
+                if (calidaSignal == 1) {
+                    jsonQuality.put("QualitySignal", new String("Pobre -" + String.valueOf(calidaSignal)));
+                } else if (calidaSignal == 2) {
+                    jsonQuality.put("QualitySignal", new String("Moderado -" + String.valueOf(calidaSignal)));
+                } else if (calidaSignal == 3) {
+                    jsonQuality.put("QualitySignal", new String("Bueno -" + String.valueOf(calidaSignal)));
+                } else if (calidaSignal == 4) {
+                    jsonQuality.put("QualitySignal", new String("Estupendo -" + String.valueOf(calidaSignal)));
+                } else if (calidaSignal == 0) {
+                    jsonQuality.put("QualitySignal", new String("Nulo -" + String.valueOf(calidaSignal)));
+                }
+            }else if(cellInfo instanceof CellInfoGsm){
+                calidaSignal = ((CellInfoLte) cellInfo).getCellSignalStrength().getLevel();
+                jsonQuality.put("Dbm",String.valueOf(((CellInfoLte)cellInfo).getCellSignalStrength().getDbm()));
+                jsonQuality.put("Rsrp","");
+                jsonQuality.put("Rsrq","");
+                jsonQuality.put("Cqi","");
+                jsonQuality.put("Rssnr","");
+                if (calidaSignal == 1) {
+                    jsonQuality.put("QualitySignal", new String("Pobre -" + String.valueOf(calidaSignal)));
+                } else if (calidaSignal == 2) {
+                    jsonQuality.put("QualitySignal", new String("Moderado -" + String.valueOf(calidaSignal)));
+                } else if (calidaSignal == 3) {
+                    jsonQuality.put("QualitySignal", new String("Bueno -" + String.valueOf(calidaSignal)));
+                } else if (calidaSignal == 4) {
+                    jsonQuality.put("QualitySignal", new String("Estupendo -" + String.valueOf(calidaSignal)));
+                } else if (calidaSignal == 0) {
+                    jsonQuality.put("QualitySignal", new String("Nulo -" + String.valueOf(calidaSignal)));
+                }
+            }else if(cellInfo instanceof CellInfoWcdma){
+                jsonQuality.put("Dbm",String.valueOf(((CellInfoLte)cellInfo).getCellSignalStrength().getDbm()));
+                jsonQuality.put("Rsrp","");
+                jsonQuality.put("Rsrq","");
+                jsonQuality.put("Cqi","");
+                jsonQuality.put("Rssnr","");
+                jsonQuality.put("QualitySignal", "");
+            }
+        }
+
+        return jsonQuality.toString();
     }
 
 }
