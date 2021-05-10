@@ -52,7 +52,7 @@ public class TelephonyManagerInfo extends CordovaPlugin {
             //r.put("subscriberId", this.getSubscriberId());
             r.put("voiceMailAlphaTag", this.getVoiceMailAlphaTag());
             r.put("voiceMailNumber", this.getVoiceMailNumber());
-            r.put("hasIccCard", this.hasIccCard());
+            //r.put("hasIccCard", this.hasIccCard());
             r.put("dataActivity", this.getDataActivity());
             
             callbackContext.success(r);
