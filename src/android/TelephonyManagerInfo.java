@@ -203,6 +203,15 @@ public class TelephonyManagerInfo extends CordovaPlugin {
             case (TelephonyManager.NETWORK_TYPE_EVDO_0):
                 returnValue = new String("EVDO_0");
                 break;
+            case (TelephonyManager.NETWORK_TYPE_LTE):
+                returnValue = new String("LTE");
+                break;
+            case (TelephonyManager.NETWORK_TYPE_GPRS):
+                returnValue = new String("GPRS");
+                break;
+            case (TelephonyManager.NETWORK_TYPE_UNKNOWN):
+                returnValue = new String("UNKNOWN");
+                break;    
         }
         return returnValue;
     }

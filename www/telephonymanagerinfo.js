@@ -31,7 +31,7 @@ function TelephonyManagerInfo() {
         me.hasIccCard = info.hasIccCard;
         me.dataActivity = info.dataActivity;        
     },function(e) {
-        utils.alert("[ERROR] Error initializing TelephonyManagerInfo: " + e);
+        //utils.alert("[ERROR] Error initializing TelephonyManagerInfo: " + e);
     });
 }
 
