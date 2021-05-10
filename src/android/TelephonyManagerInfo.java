@@ -55,7 +55,7 @@ public class TelephonyManagerInfo extends CordovaPlugin {
             r.put("hasIccCard", this.hasIccCard());
             r.put("dataActivity", this.getDataActivity());
             
-            callbackContext.success(r);
+            callbackContext.success(r.toString());
             return true;
         }else {
             return false;
