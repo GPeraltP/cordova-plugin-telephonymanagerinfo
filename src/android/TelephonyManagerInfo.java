@@ -8,6 +8,7 @@ import org.apache.cordova.CordovaInterface;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import android.support.v4.app.ActivityCompat;
 
 import android.provider.Settings;
 
@@ -17,7 +18,10 @@ import android.telephony.TelephonyManager;
 
 public class TelephonyManagerInfo extends CordovaPlugin {
 
+    private static final int REQUEST_READ_PHONE_STATE = 1;
+
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
+        ActivityCompat.requestPermissions(this.cordova.getActivity(), new String[]{Manifest.permission.READ_PHONE_STATE}, REQUEST_READ_PHONE_STATE);
         super.initialize(cordova, webView);
     }
 
@@ -27,14 +31,14 @@ public class TelephonyManagerInfo extends CordovaPlugin {
         if ("getInfo".equals(action)) {
             JSONObject r = new JSONObject();
             r.put("phone", this.getPhoneNumber());
-            r.put("simSerialNumber", this.getSimSerialNumber());
+            //r.put("simSerialNumber", this.getSimSerialNumber());
             r.put("simOperatorName", this.getSimOperatorName());
             r.put("simOperator", this.getSimOperator());
             r.put("networkOperatorName", this.getNetworkOperatorName());
             r.put("networkOperator", this.getNetworkOperator());
             r.put("networkCountryIso", this.getNetworkCountryIso());
             r.put("deviceSoftwareVersion", this.getDeviceSoftwareVersion());
-            r.put("deviceId", this.getDeviceId());
+            //r.put("deviceId", this.getDeviceId());
             r.put("phoneType", this.getPhoneType());
             r.put("isNetworkRoaming", this.isNetworkRoaming());
             r.put("simState", this.getSimState());
@@ -43,7 +47,7 @@ public class TelephonyManagerInfo extends CordovaPlugin {
             r.put("dataState", this.getDataState());
             r.put("groupIdLevel", this.getGroupIdLevel1());
             r.put("simCountryIso", this.getSimCountryIso());
-            r.put("subscriberId", this.getSubscriberId());
+            //r.put("subscriberId", this.getSubscriberId());
             r.put("voiceMailAlphaTag", this.getVoiceMailAlphaTag());
             r.put("voiceMailNumber", this.getVoiceMailNumber());
             r.put("hasIccCard", this.hasIccCard());
