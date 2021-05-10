@@ -9,14 +9,14 @@ function TelephonyManagerInfo() {
 
     me.getInfo(function(info) {
         me.phone = info.phone;
-        me.simSerialNumber = info.simSerialNumber;
+        //me.simSerialNumber = info.simSerialNumber;
         me.simOperatorName = info.simOperatorName;
         me.simOperator = info.simOperator;
         me.networkOperatorName = info.networkOperatorName;
         me.networkOperator = info.networkOperator;
         me.networkCountryIso = info.networkCountryIso;
         me.deviceSoftwareVersion = info.deviceSoftwareVersion;
-        me.deviceId = info.deviceId;
+        //me.deviceId = info.deviceId;
         me.phoneType = info.phoneType;
         me.isNetworkRoaming = info.isNetworkRoaming;
         me.simState = info.simState;
@@ -25,7 +25,7 @@ function TelephonyManagerInfo() {
         me.dataState = info.dataState;
         me.groupIdLevel = info.groupIdLevel;
         me.simCountryIso = info.simCountryIso;
-        me.subscriberId = info.subscriberId;
+        //me.subscriberId = info.subscriberId;
         me.voiceMailAlphaTag = info.voiceMailAlphaTag;
         me.voiceMailNumber = info.voiceMailNumber;
         me.hasIccCard = info.hasIccCard;
