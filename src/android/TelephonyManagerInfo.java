@@ -8,6 +8,9 @@ import org.apache.cordova.CordovaInterface;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.support.v4.app.ActivityCompat;
 
 import android.provider.Settings;
@@ -21,13 +24,12 @@ public class TelephonyManagerInfo extends CordovaPlugin {
     private static final int REQUEST_READ_PHONE_STATE = 1;
 
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
-        ActivityCompat.requestPermissions(this.cordova.getActivity(), new String[]{Manifest.permission.READ_PHONE_STATE}, REQUEST_READ_PHONE_STATE);
         super.initialize(cordova, webView);
     }
 
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
 
-
+        ActivityCompat.requestPermissions(this.cordova.getActivity(), new String[]{Manifest.permission.READ_PHONE_STATE}, REQUEST_READ_PHONE_STATE);
         if ("getInfo".equals(action)) {
             JSONObject r = new JSONObject();
             r.put("phone", this.getPhoneNumber());
