@@ -329,7 +329,7 @@ public class TelephonyManagerInfo extends CordovaPlugin {
         return returnValue;
     }
 
-    public String getSignalQuality() {
+    public JSONObject getSignalQuality() {
         JSONObject jsonQuality = new JSONObject();
         TelephonyManager tm = (TelephonyManager) this.cordova.getActivity().getSystemService(Context.TELEPHONY_SERVICE);
         List<CellInfo> cellInfoList = tm.getAllCellInfo();
@@ -402,7 +402,7 @@ public class TelephonyManagerInfo extends CordovaPlugin {
             }
         }
 
-        return jsonQuality.toString();
+        return jsonQuality;
     }
 
 }
