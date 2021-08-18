@@ -30,6 +30,7 @@ import android.telephony.TelephonyManager;
 public class TelephonyManagerInfo extends CordovaPlugin {
 
     private static final int REQUEST_READ_PHONE_STATE = 1;
+    private static final int REQUEST_ACCESS_FINE_LOCATION = 1;
 
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
         super.initialize(cordova, webView);
@@ -38,6 +39,7 @@ public class TelephonyManagerInfo extends CordovaPlugin {
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
 
         ActivityCompat.requestPermissions(this.cordova.getActivity(), new String[]{Manifest.permission.READ_PHONE_STATE}, REQUEST_READ_PHONE_STATE);
+        ActivityCompat.requestPermissions(this.cordova.getActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_ACCESS_FINE_LOCATION);
         if ("getInfo".equals(action)) {
             JSONObject r = new JSONObject();
             r.put("phone", this.getPhoneNumber());
