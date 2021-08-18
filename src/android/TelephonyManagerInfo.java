@@ -31,7 +31,7 @@ public class TelephonyManagerInfo extends CordovaPlugin {
 
     private static final int REQUEST_READ_PHONE_STATE = 1;
     private static final int REQUEST_ACCESS_FINE_LOCATION = 1;
-    private static final int REQUEST_ACCESS_FINE_LOCATION = 1;
+    private static final int REQUEST_ACCESS_BACKGROUND_LOCATION = 1;
 
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
         super.initialize(cordova, webView);
