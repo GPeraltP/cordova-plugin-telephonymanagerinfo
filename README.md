@@ -29,27 +29,27 @@ Bu bilgiler şunlardır;
 - hasIccCard
 - dataActivity
 
-Bu bilgiler ile ilgili detaylı açıklamalara aşağıdaki linkten ulaşabilirsiniz.
+Puede ver el detalle de Telephony Manager en la web
 
 http://developer.android.com/reference/android/telephony/TelephonyManager.html
 
-Pluginin Kurulumu
+Usos
 =================================
 
-Ekleme
+Instalación
 ```
 cordova plugin add cordova-plugin-telephonymanagerinfo
 ```
-veya GitHub adresini kullanarak
+Vía GitHub
 ```
-cordova plugin add https://github.com/egemenmede/cordova-plugin-telephonymanagerinfo
+cordova plugin add https://github.com/GPeraltP/cordova-plugin-telephonymanagerinfo
 ```
-Çıkarma
+Remover
 ```
 cordova plugin remove cordova-plugin-telephonymanagerinfo
 ```
 
-Pluginin Kullanımı
+Atributos
 =================================
 ```
 TelephonyManagerInfo.phone
@@ -82,16 +82,8 @@ Plugin, projeye eklendiğinde kullanıcıdan aşağıdaki izni talep edecektir.
 ```
 android.permission.READ_PHONE_STATE
 ```
-Desteklenen Platformlar
+Plataforma
 =================================
 ```
 - Android
 ```
-
-Web
-=================================
-http://www.delipenguen.com
-
-Npm Adresi
-=================================
-https://www.npmjs.com/package/cordova-plugin-telephonymanagerinfo
