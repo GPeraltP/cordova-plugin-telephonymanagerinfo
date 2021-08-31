@@ -29,9 +29,7 @@ import android.telephony.TelephonyManager;
 
 public class TelephonyManagerInfo extends CordovaPlugin {
 
-    private static final int REQUEST_READ_PHONE_STATE = 1;
-    private static final int REQUEST_ACCESS_FINE_LOCATION = 1;
-    private static final int REQUEST_ACCESS_BACKGROUND_LOCATION = 1;
+    private static final int PERMISSION_REQUEST_CODE = 1;
 
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
         super.initialize(cordova, webView);
@@ -39,9 +37,7 @@ public class TelephonyManagerInfo extends CordovaPlugin {
 
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
 
-        ActivityCompat.requestPermissions(this.cordova.getActivity(), new String[]{Manifest.permission.READ_PHONE_STATE}, REQUEST_READ_PHONE_STATE);
-        ActivityCompat.requestPermissions(this.cordova.getActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_ACCESS_FINE_LOCATION);
-        ActivityCompat.requestPermissions(this.cordova.getActivity(), new String[]{Manifest.permission.ACCESS_BACKGROUND_LOCATION}, REQUEST_ACCESS_BACKGROUND_LOCATION);
+        requestPermission();
         if ("getInfo".equals(action)) {
             JSONObject r = new JSONObject();
             r.put("phone", this.getPhoneNumber());
@@ -408,5 +404,26 @@ public class TelephonyManagerInfo extends CordovaPlugin {
 
         return jsonQuality;
     }
-
+    
+    public void requestPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            ActivityCompat.requestPermissions(
+                    this.cordova.getActivity(),
+                    new String[]{
+                            Manifest.permission.READ_PHONE_STATE,
+                            Manifest.permission.ACCESS_FINE_LOCATION,
+                            Manifest.permission.ACCESS_BACKGROUND_LOCATION
+                    },
+                    PERMISSION_REQUEST_CODE
+            );
+        } else {
+            ActivityCompat.requestPermissions(
+                    this.cordova.getActivity(),
+                    new String[] {
+                            Manifest.permission.READ_PHONE_STATE,
+                            Manifest.permission.ACCESS_FINE_LOCATION},
+                    PERMISSION_REQUEST_CODE
+            );
+        }
+    }
 }
