@@ -2,9 +2,9 @@
 Cordova Plugin TelephonyManagerInfo
 =================================
 
-Bu plugin, native Android üzerinde `TelephonyManager` class'ının kullanılarak öğrenilebilecek 22 bilgiyi bu plugin ile almanızı sağlar.
+Plugin nativo Android haciendo uso de la clase `TelephonyManager`.
 
-Bu bilgiler şunlardır;
+Se encuentra los siguientes atributos;
 
 - phone
 - simSerialNumber
@@ -75,12 +75,14 @@ TelephonyManagerInfo.voiceMailNumber
 TelephonyManagerInfo.hasIccCard
 TelephonyManagerInfo.dataActivity
 ```
-İzinler
+Permisos
 =================================
 
-Plugin, projeye eklendiğinde kullanıcıdan aşağıdaki izni talep edecektir.
+
 ```
 android.permission.READ_PHONE_STATE
+android.permission.ACCESS_FINE_LOCATION
+android.permission.ACCESS_BACKGROUND_LOCATION (Android Q)
 ```
 Plataforma
 =================================
