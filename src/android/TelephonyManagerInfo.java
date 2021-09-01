@@ -366,7 +366,7 @@ public class TelephonyManagerInfo extends CordovaPlugin {
                 }
                 
             }else if(cellInfo instanceof CellInfoGsm){
-                calidaSignal = ((CellInfoLte) cellInfo).getCellSignalStrength().getLevel();
+                calidaSignal = ((CellInfoGsm) cellInfo).getCellSignalStrength().getLevel();
                 try {
                     jsonQuality.put("Dbm",String.valueOf(((CellInfoLte)cellInfo).getCellSignalStrength().getDbm()));
                     jsonQuality.put("Rsrp","");
@@ -390,7 +390,7 @@ public class TelephonyManagerInfo extends CordovaPlugin {
                
             }else if(cellInfo instanceof CellInfoWcdma){
                 try {
-                    jsonQuality.put("Dbm",String.valueOf(((CellInfoLte)cellInfo).getCellSignalStrength().getDbm()));
+                    jsonQuality.put("Dbm",String.valueOf(((CellInfoWcdma)cellInfo).getCellSignalStrength().getDbm()));
                     jsonQuality.put("Rsrp","");
                     jsonQuality.put("Rsrq","");
                     jsonQuality.put("Cqi","");
