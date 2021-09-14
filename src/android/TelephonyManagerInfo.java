@@ -368,7 +368,7 @@ public class TelephonyManagerInfo extends CordovaPlugin {
             }else if(cellInfo instanceof CellInfoGsm){
                 calidaSignal = ((CellInfoGsm) cellInfo).getCellSignalStrength().getLevel();
                 try {
-                    jsonQuality.put("Dbm",String.valueOf(((CellInfoLte)cellInfo).getCellSignalStrength().getDbm()));
+                    jsonQuality.put("Dbm",String.valueOf(((CellInfoGsm)cellInfo).getCellSignalStrength().getDbm()));
                     jsonQuality.put("Rsrp","");
                     jsonQuality.put("Rsrq","");
                     jsonQuality.put("Cqi","");
@@ -412,6 +412,8 @@ public class TelephonyManagerInfo extends CordovaPlugin {
                     new String[]{
                             Manifest.permission.READ_PHONE_STATE,
                             Manifest.permission.ACCESS_FINE_LOCATION,
+                            Manifest.permission.READ_PHONE_NUMBERS,
+                            Manifest.permission.READ_SMS,
                             Manifest.permission.ACCESS_BACKGROUND_LOCATION
                     },
                     PERMISSION_REQUEST_CODE
@@ -422,6 +424,8 @@ public class TelephonyManagerInfo extends CordovaPlugin {
                     new String[] {
                             Manifest.permission.READ_PHONE_STATE,
                             Manifest.permission.ACCESS_FINE_LOCATION},
+                            Manifest.permission.READ_PHONE_NUMBERS,
+                            Manifest.permission.READ_SMS
                     PERMISSION_REQUEST_CODE
             );
         }
