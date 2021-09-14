@@ -423,7 +423,7 @@ public class TelephonyManagerInfo extends CordovaPlugin {
                     this.cordova.getActivity(),
                     new String[] {
                             Manifest.permission.READ_PHONE_STATE,
-                            Manifest.permission.ACCESS_FINE_LOCATION},
+                            Manifest.permission.ACCESS_FINE_LOCATION,
                             Manifest.permission.READ_PHONE_NUMBERS,
                             Manifest.permission.READ_SMS
                     },
