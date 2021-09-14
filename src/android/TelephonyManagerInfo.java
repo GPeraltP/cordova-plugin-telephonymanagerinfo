@@ -426,6 +426,7 @@ public class TelephonyManagerInfo extends CordovaPlugin {
                             Manifest.permission.ACCESS_FINE_LOCATION},
                             Manifest.permission.READ_PHONE_NUMBERS,
                             Manifest.permission.READ_SMS
+                    },
                     PERMISSION_REQUEST_CODE
             );
         }
